@@ -15,7 +15,7 @@ class Scraper
   end
 
   def make_courses
-    self.get_courses.each do |post| 
+    self.get_courses.each do |post|
       course = Course.new
       course.title = post.css("h2").text
       course.schedule = post.css(".date").text
@@ -26,7 +26,7 @@ class Scraper
   def print_courses
     self.make_courses
     Course.all.each do |course|
-      if course.title
+      if course.title && course.title != ""
         puts "Title: #{course.title}"
         puts "  Schedule: #{course.schedule}"
         puts "  Description: #{course.description}"
